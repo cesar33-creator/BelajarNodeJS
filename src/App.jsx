@@ -1,30 +1,41 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
-import MyButton from './components/myButton';
 
 function App() {
   const [count, setCount] = useState(0);
 
+  const tambah = () => {
+    if (count < 20) {
+      setCount(count + 1);
+    }
+  };
+
+  const kurang = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
+  function reset() {
+    setCount(0);
+  }
+
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="card bg-info container w-100 vh-50 d-flex justify-content-center align-items-center flex-column gap-3">
+        <h1 className="text-center fw-bold">{count}</h1>
+        <div className="d-flex justify-content-center align-content gap-3">
+          <button className="btn btn-primary" onClick={kurang}>
+            kurang
+          </button>
+          <button className="btn btn-success" onClick={tambah}>
+            tambah
+          </button>
+          <button className="btn btn-danger" onClick={reset}>
+            reset
+          </button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>
-          Welcome to My App
-        </p>
-        <MyButton />
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
   );
 }
